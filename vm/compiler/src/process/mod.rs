@@ -698,7 +698,7 @@ function hello_world:
         let program = Program::<CurrentNetwork>::from_str(
             r"program id.aleo;
 
-  interface data:
+  struct data:
     owner as address;
 
   function initialize:
