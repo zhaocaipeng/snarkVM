@@ -271,7 +271,7 @@ pub(crate) mod test_helpers {
                     r"
 program testing.aleo;
 
-function compute:
+transition compute:
     input r0 as u32.private;
     input r1 as u32.public;
     add r0 r1 into r2;
@@ -310,7 +310,7 @@ function compute:
                     r"
 program testing.aleo;
 
-function compute:
+transition compute:
     input r0 as u32.private;
     input r1 as u32.public;
     add r0 r1 into r2;
@@ -467,7 +467,7 @@ mod tests {
     owner as address.private;
     gates as u64.private;
 
-  function genesis:
+  transition genesis:
     input r0 as address.private;
     input r1 as u64.private;
     cast r0 r1 into r2 as token.record;
@@ -499,7 +499,7 @@ mod tests {
         let program = Program::<CurrentNetwork>::from_str(
             r#"program testing.aleo;
 
-function hello_world:
+transition hello_world:
     input r0 as u32.public;
     input r1 as u32.private;
     add r0 r1 into r2;
@@ -531,7 +531,7 @@ function hello_world:
     owner as address.private;
     gates as u64.private;
 
-  function initialize:
+  transition initialize:
     input r0 as record_a.record;
     input r1 as record_b.record;
     cast r0.owner r0.gates into r2 as record_a.record;
@@ -629,7 +629,7 @@ function hello_world:
     owner as address.private;
     gates as u64.private;
 
-  function initialize:
+  transition initialize:
     input r0 as data.record;
     cast self.caller r0.gates into r1 as data.record;
     output r1 as data.record;",
@@ -701,7 +701,7 @@ function hello_world:
   struct data:
     owner as address;
 
-  function initialize:
+  transition initialize:
     cast id.aleo into r0 as data;
     output r0 as data.private;",
         )
@@ -780,7 +780,7 @@ closure check_not_equal:
     input r1 as field;
     assert.neq r0 r1;
 
-function compute:
+transition compute:
     input r0 as field.private;
     input r1 as field.public;
     input r2 as token.record;
@@ -891,23 +891,23 @@ record token:
     gates as u64.private;
     amount as u64.private;
 
-function mint:
+transition mint:
     input r0 as address.private;
     input r1 as u64.private;
     cast r0 0u64 r1 into r2 as token.record;
     output r2 as token.record;
 
-function produce_magic_number:
+transition produce_magic_number:
     add 1234u64 0u64 into r0;
     output r0 as u64.private;
 
-function check_magic_number:
+transition check_magic_number:
     input r0 as u64.private;
     assert.eq r0 1234u64;
 
-function noop:
+transition noop:
 
-function transfer:
+transition transfer:
     input r0 as token.record;
     input r1 as address.private;
     input r2 as u64.private;
@@ -929,7 +929,7 @@ import token.aleo;
 
 program wallet.aleo;
 
-function transfer:
+transition transfer:
     input r0 as token.aleo/token.record;
     input r1 as address.private;
     input r2 as u64.private;
@@ -1048,7 +1048,7 @@ mapping account:
     key owner as address.public;
     value amount as u64.public;
 
-function compute:
+transition compute:
     input r0 as address.public;
     input r1 as u64.public;
     input r2 as u64.public;
@@ -1144,7 +1144,7 @@ mapping account:
     key owner as address.public;
     value amount as u64.public;
 
-function compute:
+transition compute:
     input r0 as address.public;
     input r1 as u64.public;
     input r2 as u64.public;
@@ -1245,9 +1245,9 @@ mapping account:
     // The token amount.
     value amount as u64.public;
 
-// The function `mint_public` issues the specified token amount
+// The transition `mint_public` issues the specified token amount
 // for the token receiver publicly on the network.
-function mint_public:
+transition mint_public:
     // Input the token receiver.
     input r0 as address.public;
     // Input the token amount.
@@ -1360,9 +1360,9 @@ mapping account:
     // The token amount.
     value amount as u64.public;
 
-// The function `mint_public` issues the specified token amount
+// The transition `mint_public` issues the specified token amount
 // for the token receiver publicly on the network.
-function mint_public:
+transition mint_public:
     // Input the token receiver.
     input r0 as address.public;
     // Input the token amount.
@@ -1425,7 +1425,7 @@ import token.aleo;
 
 program public_wallet.aleo;
 
-function mint:
+transition mint:
     input r0 as address.public;
     input r1 as u64.public;
     call token.aleo/mint_public r0 r1;",

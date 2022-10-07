@@ -90,7 +90,7 @@ impl<N: Network> StatePath<N> {
         // Ensure the transaction path is valid.
         ensure!(
             N::verify_merkle_path_bhp(&transaction_path, &transaction_id, &transaction_leaf.to_bits_le()),
-            "'{}' (a function or transition) does not belong to transaction '{transaction_id}'",
+            "'{}' (a transition) does not belong to transaction '{transaction_id}'",
             transaction_leaf.id(),
         );
         // Ensure the transactions path is valid.
