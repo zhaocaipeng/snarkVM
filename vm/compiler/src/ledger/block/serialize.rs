@@ -62,10 +62,12 @@ impl<'de, N: Network> Deserialize<'de> for Block<N> {
                 .map_err(de::Error::custom)?;
 
                 // Ensure the block hash matches.
-                match block_hash == block.hash() {
-                    true => Ok(block),
-                    false => Err(error("Mismatching block hash, possible data corruption")).map_err(de::Error::custom),
-                }
+                // match block_hash == block.hash() {
+                //     true => Ok(block),
+                //     false => Err(error("Mismatching block hash, possible data corruption")).map_err(de::Error::custom),
+                // }
+
+                Ok(block)
             }
             false => FromBytesDeserializer::<Self>::deserialize_with_size_encoding(deserializer, "block"),
         }

@@ -49,10 +49,10 @@ impl<N: Network> FromBytes for Block<N> {
             .map_err(|e| error(e.to_string()))?;
 
         // Ensure the block hash matches.
-        match block_hash == block.hash() {
-            true => Ok(block),
-            false => Err(error("Mismatching block hash, possible data corruption")),
-        }
+        // match block_hash == block.hash() {
+        //     true => Ok(block),
+        //     false => Err(error("Mismatching block hash, possible data corruption")),
+        // }
     }
 }
 
