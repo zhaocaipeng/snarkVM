@@ -53,6 +53,7 @@ impl<N: Network> FromBytes for Block<N> {
         //     true => Ok(block),
         //     false => Err(error("Mismatching block hash, possible data corruption")),
         // }
+        Ok(block)
     }
 }
 
