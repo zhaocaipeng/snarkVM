@@ -111,21 +111,21 @@ impl Environment for Testnet3 {
 }
 
 impl Network for Testnet3 {
-    /// The block hash type.
-    type BlockHash = AleoID<Field<Self>, { hrp2!("ab") }>;
-    /// The state root type.
-    type StateRoot = AleoID<Field<Self>, { hrp2!("ar") }>;
-    /// The transaction ID type.
-    type TransactionID = AleoID<Field<Self>, { hrp2!("at") }>;
-    /// The transition ID type.
-    type TransitionID = AleoID<Field<Self>, { hrp2!("as") }>;
-
-    /// The network edition.
-    const EDITION: u16 = 0;
     /// The network ID.
     const ID: u16 = 3;
     /// The network name.
     const NAME: &'static str = "Aleo Testnet3";
+    /// The network edition.
+    const EDITION: u16 = 0;
+    /// The state root type.
+    type StateRoot = AleoID<Field<Self>, { hrp2!("ar") }>;
+
+    /// The block hash type.
+    type BlockHash = AleoID<Field<Self>, { hrp2!("ab") }>;
+    /// The transaction ID type.
+    type TransactionID = AleoID<Field<Self>, { hrp2!("at") }>;
+    /// The transition ID type.
+    type TransitionID = AleoID<Field<Self>, { hrp2!("as") }>;
 
     /// Returns the genesis block bytes.
     fn genesis_bytes() -> &'static [u8] {
