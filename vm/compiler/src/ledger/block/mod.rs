@@ -95,10 +95,10 @@ impl<N: Network> Block<N> {
             Some(coinbase_proof) => coinbase_proof.to_accumulator_point()?,
             None => Field::<N>::zero(),
         };
-        ensure!(
-            header.coinbase_accumulator_point() == expected_accumulator_point,
-            "The coinbase accumulator point in the block header does not correspond to the given coinbase proof"
-        );
+        // ensure!(
+        //     header.coinbase_accumulator_point() == expected_accumulator_point,
+        //     "The coinbase accumulator point in the block header does not correspond to the given coinbase proof"
+        // );
 
         // Construct the block.
         Ok(Self { block_hash: block_hash.into(), previous_hash, header, transactions, coinbase_proof, signature })
